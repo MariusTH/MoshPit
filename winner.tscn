@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1t4svwlvsdf4"]
+
+[ext_resource type="Script" path="res://winner.gd" id="1_okcwk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bk61a"]
+line_spacing = 5.0
+font_size = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 328.0
+offset_bottom = 215.0
+script = ExtResource("1_okcwk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 278.0
+offset_bottom = 181.0
+text = "Winner :"
+label_settings = SubResource("LabelSettings_bk61a")

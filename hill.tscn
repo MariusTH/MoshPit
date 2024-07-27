@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdjxkcqnvbykg"]
+
+[ext_resource type="Script" path="res://hill.gd" id="1_7d2rf"]
+[ext_resource type="Shader" path="res://hill.gdshader" id="1_xmhng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbe2v"]
+render_priority = 0
+shader = ExtResource("1_xmhng")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1grh1"]
+material = SubResource("ShaderMaterial_lbe2v")
+top_radius = 10.0
+bottom_radius = 10.0
+height = 10.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ukyow"]
+height = 10.0
+radius = 10.0
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7d2rf")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("CylinderMesh_1grh1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ukyow")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

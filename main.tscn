@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://d270vrtmu04yb"]
+
+[ext_resource type="PackedScene" uid="uid://cxgpmxvjbtuho" path="res://player.tscn" id="1_5txkm"]
+[ext_resource type="Script" path="res://SceneManager.gd" id="1_ca5pc"]
+[ext_resource type="PackedScene" uid="uid://bdjxkcqnvbykg" path="res://hill.tscn" id="3_jplll"]
+[ext_resource type="Script" path="res://VBoxContainer.gd" id="4_813mv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6cjcl"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l34q6"]
+size = Vector3(100, 0.1, 100)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ca5pc")
+PlayerScene = ExtResource("1_5txkm")
+
+[node name="Ground2" type="StaticBody3D" parent="." groups=["ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2"]
+shape = SubResource("BoxShape3D_6cjcl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
+mesh = SubResource("BoxMesh_l34q6")
+skeleton = NodePath("../../Ground2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.563295, 0.826256, 0, -0.826256, 0.563295, -1.44383, 8.57313, 7.31981)
+
+[node name="SpawnLocations" type="Node3D" parent="."]
+
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28274, 0, 0)
+
+[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7518, 0, 0)
+
+[node name="Node3D" parent="." instance=ExtResource("3_jplll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42059, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 686.0
+offset_bottom = 420.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_813mv")
